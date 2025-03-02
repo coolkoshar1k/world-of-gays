@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Джони Лох</title>
+    <link rel="stylesheet" href="media.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="button-container">
+        <button class="button" id="button">Не нажмешь гей</button>
+    </div>
+    <div class="hear__muzlo">
+        <h2 id="textOne">Хочешь послушать музло?</h2>
+    </div>
+    <div class="click__here">
+        <h2 id="textTwo">Тогда нажми сюда ↑</h2>
+    </div>
+    
+    <div id="message" class="message"></div>
+    <div id="image-container" class="image-container">
+        <img id="celebration-image" src="img/nigrita.jpg" alt="Поздравление">
+    </div>
+    <audio id="audioPlayer" controls>
+        <source src="audio/zdarova-bandityi-bassboosted.mp3" type="audio/mp3">
+        Ваш браузер не поддерживает элемент audio.
+    </audio>
+    <div class="audio-container">
+        <!-- Скрытая стандартная кнопка, которая заменяется кнопкой Земля -->
+        <button id="playButton" class="earth-button"></button>
+    </div>
+      <!-- Новый элемент текста и кнопки, которые будут скрыты -->
+      <div id="afterAudio" class="after-audio">
+        <h2>Щя Сергей прибежит со Спикерменом</h2>
+        <button id="newButton" class="new-button">Я забыл про Сергея, щя вспомним</button>
+    </div>
+    <script src="script.js"></script>
+   
+   <script>
+        // Получаем элементы
+        const audioPlayer = document.getElementById('audioPlayer');
+        const playButton = document.getElementById('playButton');
+
+        // Обработчик для кнопки
+        playButton.addEventListener('click', () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play(); // Воспроизводим звук
+            } else {
+                audioPlayer.pause(); // Останавливаем звук
+            }
+        });
+    </script>
+<div id="popup" class="hidden">
+    
+    <audio id="popupAudio" src="audio/book_trimmed_2.mp3"></audio>
+    <p id="popupText" class="hidden">Книга братан, иди-ка сюда!</p>
+    <button id="goToBookButton" class="hidden">Идти к к<span>НИГЕ</span></button>
+</div>
+
+
+</body>
+</html>
+

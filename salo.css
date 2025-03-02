@@ -1,0 +1,16 @@
+#stopButton {
+    background: linear-gradient(90deg, #ffffff, #0000ff, #d52b1e); /* Белый, синий, красный */
+    border: 4px solid #a56d3a; /* Тёмно-коричневая граница для контраста */
+    padding: 15px 30px;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+  
+  #stopButton:hover {
+    background: linear-gradient(90deg, #d52b1e, #0000ff, #ffffff); /* Поменять порядок цветов при наведении */
+    transform: scale(1.1);
+  }
+  

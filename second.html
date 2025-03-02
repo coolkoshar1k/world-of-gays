@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Флаг Северной Кореи</title>
+    <link rel="stylesheet" href="second.css">
+</head>
+<body>
+    <div class="heart-container">
+        <!-- Сердечки будут сгенерированы с помощью CSS -->
+    </div>
+   <div class="union">
+    <div class="container">
+        <div class="image-wrapper">
+            <img src="img/speakerman.png" alt="Большая картинка" class="large-image">
+            <img src="img/spikeranus.jpg" alt="Маленькая картинка" class="small-image">
+            <div class="heart-text">
+                <span class="heart">&#10084;</span>
+                <p>Сорян другой картинки небыло</p>
+            </div>
+        </div>
+    </div>
+    <div class="flag">
+        <div class="top-stripe"></div>
+        <div class="middle-stripe">
+            <div class="circle">
+                <div class="star">&#9733;</div>
+            </div>
+        </div>
+        <div class="bottom-stripe"></div>
+    </div>
+   </div>
+   <div class="second__container">
+    <!-- Кнопка Советского Союза -->
+    <button id="playPauseButton" class="soviet-button">
+        <button id="redirectButton" class="ukraine-button">Стать Українцем</button>
+        <audio id="sovietAnthem" controls>
+            <source src="audio/SSSR.mp3" type="audio/mp3">
+            Ваш браузер не поддерживает элемент audio.
+        </audio>
+    </button>
+<div class="spikeranus">
+    <h2>Сергей спикерманус
+        у него лысый анус
+    </h2>
+</div>
+
+</div>
+
+<script>
+    // Получаем элементы
+    const sovietAnthem = document.getElementById('sovietAnthem');
+    const playPauseButton = document.getElementById('playPauseButton');
+    // При нажатии на кнопку воспроизводим гимн
+    sovietAnthem.addEventListener('click', () => {
+        sovietAnthem.play(); // Воспроизводим гимн
+    });
+
+
+            // Начало и конец обрезанного аудио
+            const startTime = 0; // Начало с 0-й секунды
+        const endTime = 20; // Остановка на 20-й секунде
+
+       // Устанавливаем начало воспроизведения
+       sovietAnthem.currentTime = startTime;
+       playPauseButton.currentTime = startTime;
+
+
+
+// Состояние кнопки (воспроизведение или пауза)
+let isPlaying = false;
+
+// Функция для воспроизведения или паузы
+playPauseButton.addEventListener('click', function() {
+    if (isPlaying) {
+        // Если воспроизводится, ставим на паузу
+        sovietAnthem.pause();
+ // Меняем текст на кнопке
+    } else {
+        // Если на паузе, воспроизводим
+        sovietAnthem.play(); // Меняем текст на кнопке
+    }
+
+    // Когда время аудио достигает конца, останавливаем его
+    sovietAnthem.ontimeupdate = function() {
+        if (sovietAnthem.currentTime >= endTime) {
+            sovietAnthem.pause(); // Останавливаем аудио // Меняем текст на кнопке
+        }
+    };
+
+    // Обновляем состояние кнопки
+    isPlaying = !isPlaying;
+});
+const redirectButton = document.getElementById('redirectButton');
+
+sovietAnthem.addEventListener('ended', function() {
+    redirectButton.disabled = false; // Разблокируем кнопку
+});
+
+// При нажатии на кнопку переходим в salo.html
+redirectButton.addEventListener('click', function() {
+    window.location.href = 'salo.html';
+});
+
+
+
+</script>
+    
+</body>
+</html>

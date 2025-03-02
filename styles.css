@@ -1,0 +1,214 @@
+/* Основные стили для страницы */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    height: 100vh; /* Чтобы градиент занимал весь экран */
+    margin: 0;
+    background: linear-gradient(135deg, #00aaff, #f9d423); /* Голубой и желтый */
+    color: #fff;
+}
+
+/* Контейнер для кнопки */
+.button-container {
+    position: relative;
+    display: flex;
+}
+
+/* Стиль кнопки */
+.button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+}
+
+/* Светящийся эффект */
+.button:hover {
+    box-shadow: 0 0 30px rgba(52, 152, 219, 1);
+}
+
+/* Сообщение */
+.message {
+    position: absolute;
+    top: 145px;
+    font-size: 24px;
+    color: skyblue;
+    display: none;
+}
+
+/* Для картинки */
+.image-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+    animation: rotate 3s infinite linear;
+
+
+}
+
+#celebration-image {
+    width: 150px;
+    height: 150px;
+    animation: rotateImage 3s infinite linear;
+}
+
+
+/* Ключевая анимация для картинки */
+@keyframes rotateImage {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Контейнер для аудио */
+.audio-container {
+    position: fixed;
+    top: 20px; /* Расположение кнопки сверху */
+    left: 50%;
+    transform: translateX(-50%); /* Центрируем по горизонтали */
+}
+
+/* Стиль кнопки в виде Земли */
+.earth-button {
+    width: 80px;
+    height: 80px;
+    background-color: #2b8a3e; /* Зеленый цвет для земли */
+    border-radius: 50%; /* Круглая форма */
+    border: 5px solid #1c4d2c; /* Темный контур */
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* При наведении на кнопку */
+.earth-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Стиль для иконки внутри кнопки (если хочешь добавить картинку Земли) */
+.earth-button::before {
+    content: '🌍'; /* Добавляем символ Земли */
+    font-size: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+audio {
+    display: none; /* Скрываем сам элемент audio */
+}
+/* Текст, который появляется при наведении на кнопку */
+.earth-button::after {
+    content: 'Нигрита, а где твоя Антарктида?';
+    position: absolute;
+    bottom: -30px; /* Размещаем текст ниже кнопки */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: skyblue;
+    opacity: 0; /* Скрытый текст по умолчанию */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* При наведении на кнопку текст становится видимым */
+.earth-button:hover::after {
+    opacity: 1;
+}
+.hear__muzlo {
+    position: absolute;
+    top: 150px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: darkgoldenrod;
+    
+}
+.click__here {
+    position: absolute;
+    top: 110px;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: skyblue;
+}
+/* Элементы, которые будут появляться после окончания аудио */
+#afterAudio {
+    display: none; /* Скрыто по умолчанию */
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+}
+
+#afterAudio h2 {
+    font-size: 24px;
+    color: lightyellow;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+#afterAudio .new-button {
+    padding: 12px 24px;
+    background-color: #2b8a3e;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(52, 152, 219, 0.6);
+}
+
+#afterAudio .new-button:hover {
+    box-shadow: 0 0 30px rgb(52, 219, 94);
+}
+.hidden {
+    display: none;
+}
+.hidden span {
+    color: black;
+}
+
+#popup {
+    position: fixed;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    z-index: 1000;
+}
+
+
+
+#popup p {
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#goToBookButton {
+    background-color: #ffdd00;
+    color: #0057b7;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: transform 0.1s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(198, 184, 117, 0.875);
+}
+button span {
+    color: #000;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>кНИГА</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f4e3c1;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .scene {
+            position: relative;
+            width: 100%;
+            height: 60vh;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .character {
+            width: 200px;
+            transition: transform 1s ease-in-out;
+            animation: talk 0.5s infinite alternate;
+        }
+        @keyframes talk {
+            0% { transform: rotate(-2deg); }
+            100% { transform: rotate(2deg); }
+        }
+        .dialogue {
+            position: absolute;
+            font-size: 20px;
+            font-weight: bold;
+            color: cadetblue;
+            padding: 10px;
+            border-radius: 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            min-width: 100px;
+        }
+        .left-text { left: 10%; top: 30%; }
+        .center-text { top: 10%; left: 50%; transform: translateX(-50%); }
+        .right-text { right: 10%; top: 30%; }
+        .hidden { display: none; }
+        .video-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <img src="img/abdugoodbye.jpg" class="character" id="leftCharacter">
+        <div class="dialogue left-text" id="leftText"></div>
+
+        <img src="img/book.png" class="character" id="centerCharacter">
+        <div class="dialogue center-text" id="centerText"></div>
+
+        <img src="img/pelgey.jpg" class="character" id="rightCharacter">
+        <div class="dialogue right-text" id="rightText"></div>
+    </div>
+
+    <audio id="eralashAudio" src="audio/eralash_end.mp3"></audio>
+    <audio id="funnySound" src="audio/gay.mp3"></audio>
+
+    <audio id="dialogueAudio" src="audio/book_trimmed_dialogue.mp3" preload="auto"></audio>
+
+
+    <script>
+        const audio = document.getElementById('dialogueAudio');
+        const leftText = document.getElementById('leftText');
+        const centerText = document.getElementById('centerText');
+        const rightText = document.getElementById('rightText');
+
+        const dialogues = [
+            { text: "Ассалому Алейкум всем достойным", element: centerText, time: 0 },
+            { text: "Братан он говорит, что за пирата у тебя читал", element: leftText, time: 3 },
+            { text: "Где ты читал?", element: centerText, time: 6 },
+            { text: "Эмм, на 268 странице", element: rightText, time: 9 },
+            { text: "Перелистывает книгу", element: leftText, time: 12 },
+            { text: "Ааа, вот, тут есть про пирата, извини родной не узнали, а так будем знать", element: leftText, time: 15 },
+            { text: "Мямление", element: centerText, time: 20 }
+        ];
+
+        let index = 0;
+        let userInteracted = false;
+
+        document.body.addEventListener("click", () => {
+            if (!userInteracted) {
+                userInteracted = true;
+                startDialogue();
+            }
+        });
+
+        function typeText(dialog, callback) {
+            let i = 0;
+            dialog.element.style.opacity = 1;
+            dialog.element.textContent = "";
+
+            const interval = setInterval(() => {
+                if (i < dialog.text.length) {
+                    dialog.element.textContent += dialog.text[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        dialog.element.style.opacity = 0;
+                        callback();
+                    }, 2500);
+                }
+            }, 50);
+        }
+
+        function startDialogue() {
+            audio.currentTime = 0;
+            audio.play().catch(error => console.log("Ошибка воспроизведения аудио:", error));
+
+            function nextDialogue() {
+                if (index < dialogues.length) {
+                    audio.currentTime = dialogues[index].time;  // Синхронизация звука с текстом
+                    typeText(dialogues[index], nextDialogue);
+                    index++;
+                } else {
+                    startExitAnimation();
+                }
+            }
+
+            nextDialogue();
+        }
+
+        function startExitAnimation() {
+            document.getElementById('leftCharacter').style.transform = 'translateX(-100vw)';
+            document.getElementById('centerCharacter').style.transform = 'translateY(-100vh)';
+            document.getElementById('rightCharacter').style.transform = 'translateX(100vw)';
+
+            setTimeout(() => {
+                document.getElementById('eralashAudio').play();
+            }, 1000);
+        }
+
+        eralashAudio.onended = function() {
+            document.body.innerHTML = '<div id="alertBox" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; font-size:24px; font-weight:bold; border-radius:10px;">Не выйдешь с сайта — гей.</div>';
+
+            setTimeout(() => {
+                document.getElementById('alertBox').textContent = "ГЕЙ";
+                document.getElementById('funnySound').play();
+
+                setTimeout(() => {
+                    window.close();
+                }, 3000);
+            }, 10000);
+        };
+    </script>
+
+</body>
+</html>
+

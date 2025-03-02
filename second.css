@@ -1,0 +1,183 @@
+/* Обертка для картинок */
+.image-wrapper {
+    position: relative;
+}
+
+/* Стили для большой картинки */
+.large-image {
+    width: 300px;
+    height: auto;
+}
+
+/* Стили для маленькой картинки */
+.small-image {
+    position: absolute;
+    top: 40%;
+    left: 0%;
+    width: 100px;
+    height: auto;
+    border: 3px solid gainsboro; /* Белая рамка для контраста */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Легкая тень */
+
+}
+
+/* Стили для сердца и текста */
+.heart-text {
+    position: absolute;
+    top: -20px; /* Расположим чуть выше картинок */
+    left: 330px;
+    bottom: 90%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Arial', sans-serif;
+    color: #e74c3c;
+}
+
+/* Стили для сердечка */
+.heart {
+    font-size: 30px;
+}
+
+/* Стили для текста */
+.heart-text p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.flag {
+    width: 400px;
+    height: 240px;
+    border: 1px solid black;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Верхняя красная полоса */
+.top-stripe {
+    height: 40px;
+    background: red;
+}
+
+/* Средняя полоса синего цвета */
+.middle-stripe {
+    flex: 1;
+    background: #005cbf;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Белый круг в центре */
+.circle {
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+}
+
+/* Звезда внутри круга */
+.star {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: red;
+}
+
+/* Нижняя красная полоса */
+.bottom-stripe {
+    height: 40px;
+    background: red;
+}
+/* Стили для серпа и молота (символы на флаге) */
+/* Фон в виде флага Советского Союза */
+.union {
+    width: 100%;
+    height: 100vh;
+    background-color: #d52b1e; /* Красный фон флага */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.union::before {
+    content: '⚒️'; /* Эмодзи серпа и молота */
+    font-size: 100px;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    color: #d53b2e;
+}
+
+/* Контейнер для кнопки */
+.second__container {
+    text-align: center;
+}
+
+/* Стили для кнопки Советского Союза */
+.soviet-button {
+    background-color: #d53b2e; /* Красный Цвет */
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 40px;
+    border: 2px solid #d91e18; /* Тёмно-красная рамка */
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Эффект при наведении на кнопку */
+.soviet-button:hover {
+    transform: scale(1.1); /* Увеличение кнопки */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* Тень для кнопки */
+}
+
+/* Эффект для кнопки */
+.soviet-button:before {
+    content: '⚒️'; /* Серп и молот (символы Советского Союза) */
+    font-size: 40px;
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d53b2e;
+}
+
+/* Стили для аудио плеера */
+audio {
+    display: none; /* Скрываем сам элемент audio */
+}
+.spikeranus {
+    position: absolute;
+    top: 120px;
+    left: 60%;
+    display: flex;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: gold;
+}
+.ukraine-button {
+    background: linear-gradient(to bottom, #0057b7 50%, #ffdd00 50%);
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.ukraine-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+}
+

@@ -1,0 +1,59 @@
+/* media.css - адаптивные стили */
+
+/* Для маленьких экранов (телефоны) */
+@media (max-width: 600px) {
+    body {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    #playButton, #stopButton {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+    
+    .video-container {
+        width: 100%;
+    }
+    
+    #video {
+        width: 100%;
+        border-radius: 10px;
+    }
+    
+    .custom-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .progress-bar {
+        width: 90%;
+    }
+}
+
+/* Для планшетов */
+@media (max-width: 1024px) {
+    h1 {
+        font-size: 28px;
+    }
+    
+    #playButton, #stopButton {
+        font-size: 20px;
+        padding: 12px 24px;
+    }
+    
+    .video-container {
+        width: 90%;
+    }
+}
+
+/* Для широких экранов (десктоп) */
+@media (min-width: 1025px) {
+    .video-container {
+        width: 80%;
+    }
+}

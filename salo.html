@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="salo.css">
+  <title>Отдай сало</title>
+
+  <div class="custom-controls">
+    <button class="control-button" id="playPauseBtn">►</button>
+    <div class="progress-bar" id="progressBar">
+      <div class="progress" id="progress"></div>
+    </div>
+    <button class="control-button" id="muteBtn">🔊</button>
+  </div>
+
+
+
+  <style>
+    /* Градиент фона, напоминающий сало */
+    body {
+      background: linear-gradient(135deg, #a24141, #fff8d0);
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    /* Стили для кнопки, чтобы она выглядела как сало */
+    #playButton {
+      background: linear-gradient(135deg, #d2a1a1, #b04d4d);
+      border: 3px solid #c4a700;
+      padding: 15px 30px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 10px;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #playButton:hover {
+      background: linear-gradient(135deg, #e16d6d, rgb(137, 66, 66));
+      transform: scale(1.1);
+    }
+
+    /* Стили для видео */
+    #video {
+      width: 80%;
+      max-width: 600px;
+      margin-top: 20px;
+      border-radius: 15px;
+    }
+    /* Контейнер для видео */
+    .video-container {
+      position: relative;
+      width: 80%;
+      max-width: 600px;
+      margin-top: 20px;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+    /* Стили для текста */
+    h1 {
+      font-size: 36px;
+      color: #e16d6d;
+      margin-bottom: 20px;
+    }
+    .custom-controls {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 12px;
+      width: calc(100% - 20px);
+    }
+
+    .control-button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 10px;
+      transition: background 0.3s ease;
+      border-radius: 10px;
+    }
+
+    .control-button:hover {
+      background: linear-gradient(135deg, #d2a1a1, #b04d4d);
+    }
+
+    /* Ползунок прогресса */
+    .progress-bar {
+      width: 70%;
+      background: #bbb;
+      height: 8px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .progress-bar .progress {
+      height: 100%;
+      width: 0;
+      background: #ff8c00;
+      border-radius: 4px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Отдай сало</h1>
+  
+  <!-- Кнопка для проигрывания музыки -->
+  <button id="playButton">Сьесть сало</button>
+  <button id="stopButton">стать Русским</button>
+
+  <!-- Вставляем видео из мема -->
+
+  <!-- Аудиофайл -->
+  <audio id="audio" src="audio/salo.mp3"></audio>
+  <div class="video-container">
+    <video id="video" preload="auto">
+      <source src="video/otdai-salo-salo-otdai.mp4" type="video/mp4">
+      Ваш браузер не поддерживает видео.
+    </video>
+  <script>
+    document.getElementById("playButton").addEventListener("click", function() {
+      const audio = document.getElementById("audio");
+      audio.play();
+
+      // Можно добавить логику, чтобы видео начиналось сразу или через какое-то время
+      document.getElementById("video").play();
+
+      // Когда музыка завершится, можно перенаправить или выполнить другие действия
+      audio.onended = function() {
+        alert("Тепер ти вирушаєш до України!");
+      };
+    });
+    const video = document.getElementById("video");
+    const playButton = document.getElementById("playPauseBtn");
+    const progressBar = document.getElementById("progressBar");
+    const progress = document.getElementById("progress");
+    const muteButton = document.getElementById("muteBtn");
+
+    // Функция для воспроизведения и паузы видео
+    playButton.addEventListener("click", () => {
+      if (video.paused) {
+        videow.start();
+        playButton.textContent = "❚❚"; // Меняем иконку на паузу
+      } else {
+        video.pause();
+        playButton.textContent = "►"; // Меняем иконку на воспроизведение
+      }
+    });
+
+    // Обновление ползунка прогресса
+    video.addEventListener("timeupdate", () => {
+      const percentage = (video.currentTime / video.duration) * 100;
+      progress.style.width = percentage + "%";
+    });
+
+    // Перемотка видео по клику на ползунок
+    progressBar.addEventListener("click", (e) => {
+      const clickPosition = (e.offsetX / progressBar.offsetWidth) * video.duration;
+      video.currentTime = clickPosition;
+    });
+
+    // Кнопка для включения/выключения звука
+    muteButton.addEventListener("click", () => {
+      video.muted = !video.muted;
+      muteButton.textContent = video.muted ? "🔇" : "🔊"; // Изменяем иконку
+    });
+
+    // Проигрывание аудио при нажатии на кнопку
+    document.getElementById("playButton").addEventListener("click", function() {
+      audio.play();
+      video.play();
+      playButton.textContent = "❚❚"; // Начинаем воспроизведение видео
+      // Когда музыка завершится, можно перенаправить или выполнить другие действия
+      audio.onended = function() {
+        alert("ви тепер Украiнец!");
+      };
+    });
+    // Функция для остановки аудио
+document.getElementById("stopButton").addEventListener("click", function() {
+  audio.pause(); // Останавливаем аудио
+  audio.currentTime = 0; // Скидываем время воспроизведения в начало
+});
+// Функция для остановки аудио
+
+
+
+
+  </script>
+
+</body>
+</html>
