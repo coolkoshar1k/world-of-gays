@@ -75,90 +75,105 @@
 
 
     <script>
-        const audio = document.getElementById('dialogueAudio');
-        const leftText = document.getElementById('leftText');
-        const centerText = document.getElementById('centerText');
-        const rightText = document.getElementById('rightText');
-
-        const dialogues = [
-            { text: "Ассалому Алейкум всем достойным", element: centerText, time: 0 },
-            { text: "Братан он говорит, что за пирата у тебя читал", element: leftText, time: 3 },
-            { text: "Где ты читал?", element: centerText, time: 6 },
-            { text: "Эмм, на 268 странице", element: rightText, time: 9 },
-            { text: "Перелистывает книгу", element: leftText, time: 12 },
-            { text: "Ааа, вот, тут есть про пирата, извини родной не узнали, а так будем знать", element: leftText, time: 15 },
-            { text: "Мямление", element: centerText, time: 20 }
-        ];
-
-        let index = 0;
-        let userInteracted = false;
-
-        document.body.addEventListener("click", () => {
-            if (!userInteracted) {
-                userInteracted = true;
-                startDialogue();
+        document.addEventListener("DOMContentLoaded", () => {
+            const audio = document.getElementById('dialogueAudio');
+            const leftText = document.getElementById('leftText');
+            const centerText = document.getElementById('centerText');
+            const rightText = document.getElementById('rightText');
+            const funnySound = document.getElementById("funnySound");
+            const eralashAudio = document.getElementById("eralashAudio");
+    
+            if (!audio || !leftText || !centerText || !rightText || !funnySound || !eralashAudio) {
+                console.log("Ошибка: один из элементов не найден в DOM.");
+                return;
             }
-        });
-
-        function typeText(dialog, callback) {
-            let i = 0;
-            dialog.element.style.opacity = 1;
-            dialog.element.textContent = "";
-
-            const interval = setInterval(() => {
-                if (i < dialog.text.length) {
-                    dialog.element.textContent += dialog.text[i];
-                    i++;
-                } else {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        dialog.element.style.opacity = 0;
-                        callback();
-                    }, 2500);
+    
+            const dialogues = [
+                { text: "Ассалому Алейкум всем достойным", element: centerText, time: 0 },
+                { text: "Братан он говорит, что за пирата у тебя читал", element: leftText, time: 3 },
+                { text: "Где ты читал?", element: centerText, time: 6 },
+                { text: "Эмм, на 268 странице", element: rightText, time: 9 },
+                { text: "Перелистывает книгу", element: leftText, time: 12 },
+                { text: "Ааа, вот, тут есть про пирата, извини родной не узнали, а так будем знать", element: leftText, time: 15 },
+                { text: "Мямление", element: centerText, time: 20 }
+            ];
+    
+            let index = 0;
+            let userInteracted = false;
+    
+            document.body.addEventListener("click", () => {
+                if (!userInteracted) {
+                    userInteracted = true;
+                    startDialogue();
                 }
-            }, 50);
-        }
-
-        function startDialogue() {
-            audio.currentTime = 0;
-            audio.play().catch(error => console.log("Ошибка воспроизведения аудио:", error));
-
-            function nextDialogue() {
-                if (index < dialogues.length) {
-                    audio.currentTime = dialogues[index].time;  // Синхронизация звука с текстом
-                    typeText(dialogues[index], nextDialogue);
-                    index++;
-                } else {
-                    startExitAnimation();
-                }
+            });
+    
+            function typeText(dialog, callback) {
+                let i = 0;
+                dialog.element.style.opacity = 1;
+                dialog.element.textContent = "";
+    
+                const interval = setInterval(() => {
+                    if (i < dialog.text.length) {
+                        dialog.element.textContent += dialog.text[i];
+                        i++;
+                    } else {
+                        clearInterval(interval);
+                        setTimeout(() => {
+                            dialog.element.style.opacity = 0;
+                            callback();
+                        }, 2500);
+                    }
+                }, 50);
             }
-
-            nextDialogue();
-        }
-
-        function startExitAnimation() {
-            document.getElementById('leftCharacter').style.transform = 'translateX(-100vw)';
-            document.getElementById('centerCharacter').style.transform = 'translateY(-100vh)';
-            document.getElementById('rightCharacter').style.transform = 'translateX(100vw)';
-
-            setTimeout(() => {
-                document.getElementById('eralashAudio').play();
-            }, 1000);
-        }
-
-        eralashAudio.onended = function() {
-            document.body.innerHTML = '<div id="alertBox" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; font-size:24px; font-weight:bold; border-radius:10px;">Не выйдешь с сайта — гей.</div>';
-
-            setTimeout(() => {
-                document.getElementById('alertBox').textContent = "ГЕЙ";
-                document.getElementById('funnySound').play();
-
+    
+            function startDialogue() {
+                audio.currentTime = 0;
+                audio.play().catch(error => console.log("Ошибка воспроизведения аудио:", error));
+    
+                function nextDialogue() {
+                    if (index < dialogues.length) {
+                        audio.currentTime = dialogues[index].time;
+                        typeText(dialogues[index], nextDialogue);
+                        index++;
+                    } else {
+                        startExitAnimation();
+                    }
+                }
+    
+                nextDialogue();
+            }
+    
+            function startExitAnimation() {
+                document.getElementById('leftCharacter').style.transform = 'translateX(-100vw)';
+                document.getElementById('centerCharacter').style.transform = 'translateY(-100vh)';
+                document.getElementById('rightCharacter').style.transform = 'translateX(100vw)';
+    
                 setTimeout(() => {
-                    window.close();
-                }, 3000);
-            }, 10000);
-        };
+                    eralashAudio.play();
+                }, 1000);
+            }
+    
+            eralashAudio.onended = function() {
+                document.body.innerHTML = '<div id="alertBox" style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%); background:white; padding:20px; font-size:24px; font-weight:bold; border-radius:10px;">Не выйдешь с сайта — гей.</div>';
+    
+                setTimeout(() => {
+                    document.getElementById('alertBox').textContent = "ГЕЙ";
+    
+                    if (funnySound) {
+                        funnySound.play().catch(error => console.log("Ошибка воспроизведения funnySound:", error));
+                    } else {
+                        console.log("Элемент funnySound не найден!");
+                    }
+    
+                    setTimeout(() => {
+                        window.close();
+                    }, 3000);
+                }, 10000);
+            };
+        });
     </script>
+    
 
 </body>
 </html>
