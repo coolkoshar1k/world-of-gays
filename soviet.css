@@ -1,0 +1,36 @@
+/* Для экранов шириной до 768px (мобильные устройства) */
+@media (max-width: 768px) {
+    .bio-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .bio-image {
+        width: 150px; /* Уменьшаем изображения */
+    }
+
+    .gradient-text {
+        font-size: 18px; /* Уменьшаем размер текста */
+    }
+
+    .anthem-button-2 {
+        font-size: 18px;
+        padding: 15px 30px;
+    }
+}
+
+/* Для экранов шириной до 480px (маленькие смартфоны) */
+@media (max-width: 480px) {
+    .bio-image {
+        width: 120px; /* Еще меньшее изображение */
+    }
+
+    .gradient-text {
+        font-size: 16px;
+    }
+
+    .anthem-button-2 {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+}
