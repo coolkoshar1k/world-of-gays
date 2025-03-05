@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>СССР - Ленин и Сталин</title>
+    
+    <link rel="stylesheet" href="soviet.css">
+    <style>
+        .bio-image {
+            width: 200px; /* Уменьшаем ширину изображения */
+            height: auto; /* Сохраняем пропорции */
+        }
+        .gradient-text {
+    background: linear-gradient(to right, yellow, red); /* Цвета градиента */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Делаем текст прозрачным, чтобы градиент был виден */
+    font-weight: bold;
+    font-size: 24px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .anthem-button-2 {
+    background-color: #d52b1e; /* Красный цвет кнопки */
+    color: white; /* Цвет текста */
+    font-size: 24px;
+    font-weight: bold;
+    padding: 20px 40px;
+    border: 2px solid #a01d16; /* Темно-красная рамка */
+    border-radius: 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    position: relative; /* Нужно для корректного позиционирования ::before */
+    transition: transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* Значок серпа и молота в углу */
+.anthem-button-2::before { 
+    content: '⚒️☭'; /* Эмодзи серпа и молота */
+    font-size: 20px;
+    color: gold; /* Цвет значка */
+    position: absolute;
+    top: -7px;
+    left: 5px;
+}
+
+
+/* Значок серпа и молота */
+.anthem-button-2::before { 
+    content: '☭'; /* Эмодзи серпа и молота */
+    font-size: 30px;
+    color: gold; /* Цвет значка */
+}
+
+body {
+    background: linear-gradient(to right, #d52b1e, #ffd700); /* Красный слева, жёлтый справа */
+}
+
+
+    </style>
+</head>
+<body>
+    <div class="bio-container">
+        <img src="img/lenin.jpg" alt="Владимир Ленин" class="bio-image fade-in">
+        <div class="gradient-text">
+            <h2>Владимир Ильич Ленин</h2>
+            <p>Родился в 1870 году. Основатель Советского государства, лидер Октябрьской революции 1917 года. 
+            Идеолог марксизма-ленинизма, руководил созданием СССР.</p>
+        </div>
+    </div>
+
+    <div class="bio-container fade-in">
+       <img src="img/stalin.jpg" alt="Иосиф Сталин" class="bio-image fade-in">
+        <div class="gradient-text" >
+            <h2>Иосиф Виссарионович Сталин</h2>
+            <p>Родился в 1878 году. Советский государственный деятель, лидер СССР с 1924 по 1953 год. 
+            Возглавил страну в период индустриализации и Великой Отечественной войны.</p>
+        </div>
+    </div>
+
+    <!-- Кнопка для гимна -->
+    <button id="anthemButton" class="anthem-button-2"></button>
+    <audio id="sovietAnthem">
+        <source src="audio/SSSR.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        const anthemButton = document.getElementById('anthemButton');
+        const anthem = document.getElementById('sovietAnthem');
+        let isPlaying = false;
+
+        anthemButton.addEventListener('click', function() {
+            if (isPlaying) {
+                anthem.pause();
+            } else {
+                anthem.play();
+            }
+            isPlaying = !isPlaying;
+        });
+        anthem.addEventListener('ended', function () {
+    alert('Польшу съели');
+});
+    </script>
+</body>
+</html>

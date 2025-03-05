@@ -32,11 +32,11 @@
     </div>
    </div>
    <div class="second__container">
-    <!-- Кнопка Советского Союза -->
-    <button id="playPauseButton" class="soviet-button">
+    <!-- Кнопка Китая -->
+    <button id="playPauseButton" class="china-button">
         <button id="redirectButton" class="ukraine-button">Стать Українцем</button>
         <audio id="sovietAnthem" controls>
-            <source src="audio/SSSR.mp3" type="audio/mp3">
+            <source src="audio/trimmed_audio.mp3" type="audio/mp3">
             Ваш браузер не поддерживает элемент audio.
         </audio>
     </button>
@@ -71,27 +71,29 @@
 // Состояние кнопки (воспроизведение или пауза)
 let isPlaying = false;
 
-// Функция для воспроизведения или паузы
+let clickCount = 0; // Счетчик нажатий
+
 playPauseButton.addEventListener('click', function() {
+    clickCount++; // Увеличиваем счетчик при каждом нажатии
+    if (clickCount > 5) {
+        window.location.href = 'ussr.html'; // Перенаправление
+    }
+    
     if (isPlaying) {
-        // Если воспроизводится, ставим на паузу
         sovietAnthem.pause();
- // Меняем текст на кнопке
     } else {
-        // Если на паузе, воспроизводим
-        sovietAnthem.play(); // Меняем текст на кнопке
+        sovietAnthem.play();
     }
 
-    // Когда время аудио достигает конца, останавливаем его
     sovietAnthem.ontimeupdate = function() {
         if (sovietAnthem.currentTime >= endTime) {
-            sovietAnthem.pause(); // Останавливаем аудио // Меняем текст на кнопке
+            sovietAnthem.pause();
         }
     };
 
-    // Обновляем состояние кнопки
     isPlaying = !isPlaying;
 });
+
 const redirectButton = document.getElementById('redirectButton');
 
 sovietAnthem.addEventListener('ended', function() {

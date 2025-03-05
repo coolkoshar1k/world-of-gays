@@ -107,7 +107,7 @@
     overflow: hidden;
 }
 .union::before {
-    content: '⚒️'; /* Эмодзи серпа и молота */
+    content: '⭐️⭐️'; /* Эмодзи серпа и молота */
     font-size: 100px;
     position: absolute;
     top: 10%;
@@ -120,8 +120,8 @@
     text-align: center;
 }
 
-/* Стили для кнопки Советского Союза */
-.soviet-button {
+/* Стили для кнопки Китая */
+.china-button {
     background-color: #d53b2e; /* Красный Цвет */
     color: white;
     font-size: 24px;
@@ -136,20 +136,19 @@
 }
 
 /* Эффект при наведении на кнопку */
-.soviet-button:hover {
+.china-button:hover {
     transform: scale(1.1); /* Увеличение кнопки */
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.6); /* Тень для кнопки */
 }
 
 /* Эффект для кнопки */
-.soviet-button:before {
-    content: '⚒️'; /* Серп и молот (символы Советского Союза) */
-    font-size: 40px;
+.china-button:before {
+    content: "⭐️⭐️";
+    font-size: 20px;
+    color: gold;
     position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #d53b2e;
+    top: 10px;
+    left: 10px;
 }
 
 /* Стили для аудио плеера */
